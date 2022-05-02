@@ -1,0 +1,19 @@
+name: Back-end Code Style
+description: Check Back-end code style
+runs:
+  using: "composite"
+  steps:
+    - name: Black
+      working-directory: ./backend
+      shell: bash
+      run: black --check ./
+
+    - name: Mypy
+      working-directory: ./backend
+      shell: bash
+      run: mypy ./
+
+    - name: Flake8
+      working-directory: ./backend
+      shell: bash
+      run: flake8 ./

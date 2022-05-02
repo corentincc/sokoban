@@ -4,6 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+aiohttp = ">= 3.7.4, < 3.8"
 blacksheep = "*"
 django = "*"
 django-extensions = "*"
