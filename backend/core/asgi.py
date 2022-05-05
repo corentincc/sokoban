@@ -27,3 +27,8 @@ authorization = application.use_authorization()
 authorization.default_policy = Policy("authenticated", AuthenticatedRequirement())
 
 application.mount("/django", django_application)
+
+
+@application.on_start
+async def on_start(_):
+    from api import controllers  # noqa
