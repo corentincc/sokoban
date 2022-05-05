@@ -1,4 +1,4 @@
-from blacksheep import pretty_json, not_found, Response
+from blacksheep import pretty_json, no_content, Response
 from blacksheep.server.controllers import ApiController, get
 
 from core.schemas import Level
@@ -18,4 +18,4 @@ class SokobanController(ApiController):
         if level := Level.get(level_id):
             return pretty_json({"map": level.map})
         else:
-            return not_found()
+            return no_content()
