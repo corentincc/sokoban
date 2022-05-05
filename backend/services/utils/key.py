@@ -19,7 +19,7 @@ def get_or_create_key(
 ) -> str:
     if not force_create and os.path.exists(file_name):
         with open(file_name, "r") as file:
-            return file.read()
+            return file.read().strip()
     else:
         key = generate_key(length)
         with open(file_name, "w") as file:

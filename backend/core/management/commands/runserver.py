@@ -7,9 +7,37 @@ from django.core.management.commands.runserver import Command as BaseRunServerCo
 
 
 class Command(BaseRunServerCommand):
+    default_host: str = "127.0.0.1"
     default_port: int = 8000
 
     def add_arguments(self, parser: CommandParser):
+        parser.add_argument(
+            "--ssl-certfile",
+            help="ssl certfile",
+            dest="ssl_certfile",
+        )
+        parser.add_argument(
+            "--ssl-keyfile",
+            help="ssl keyfile",
+            dest="ssl_keyfile",
+        )
+        parser.add_argument(
+            "--proxy-headers",
+            action="store_true",
+            help="proxy headers",
+            dest="proxy_headers",
+        )
+        parser.add_argument(
+            "--forwarded-allow-ips",
+            help="forwarded allow ips",
+            dest="forwarded_allow_ips",
+        )
+        parser.add_argument(
+            "--host",
+            default=self.default_host,
+            help="change host",
+            dest="host",
+        )
         parser.add_argument(
             "-p",
             "--port",
