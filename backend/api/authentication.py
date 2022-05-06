@@ -7,7 +7,7 @@ from guardpost.asynchronous.authentication import AuthenticationHandler, Identit
 
 class ApiKeyAuthHandler(AuthenticationHandler):
     async def authenticate(self, context: Request) -> Optional[Identity]:
-        header_key = context.get_single_header(b"x-api-key")
+        header_key = context.get_first_header(b"x-api-key")
         api_key = settings.API_KEY
 
         if api_key and isinstance(header_key, bytes):
