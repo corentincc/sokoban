@@ -4,16 +4,16 @@ runs:
   using: "composite"
   steps:
     - name: Black
-      working-directory: ./backend
+      working-directory: ${{env.BACKEND_DIR}}
       shell: bash
       run: black --check ./
 
     - name: Mypy
-      working-directory: ./backend
+      working-directory: ${{env.BACKEND_DIR}}
       shell: bash
       run: mypy ./
 
     - name: Flake8
-      working-directory: ./backend
+      working-directory: ${{env.BACKEND_DIR}}
       shell: bash
       run: flake8 ./

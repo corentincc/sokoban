@@ -9,12 +9,34 @@ jobs:
   check:
     name: Checker
     runs-on: ubuntu-latest
+    env:
+      EXEC_PROFILE: prod
+      BACKEND_DIR: ./backend
+
+    services:
+      db:
+        image: postgres
+        env:
+          POSTGRES_DB: sokoban
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: root
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
     steps:
       - name: Run checkout
         uses: actions/checkout@v3
 
       - name: Set up environment
         uses: ./.github/actions/environment
+
+      - name: Django
+        uses: ./.github/actions/django
 
       - name: Check Back-end code style
         uses: ./.github/actions/backend-code-style

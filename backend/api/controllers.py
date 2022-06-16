@@ -1,7 +1,7 @@
 from blacksheep import pretty_json, no_content, Response
 from blacksheep.server.controllers import ApiController, get
 
-from core.schemas import Level
+from .schemas import Level
 
 
 class SokobanController(ApiController):
