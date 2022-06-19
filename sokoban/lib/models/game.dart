@@ -33,7 +33,7 @@ class Game {
     Coordinates previousPosition = Coordinates(movable.x, movable.y);
     movable.move(direction);
     board.set(movable, movable.square);
-    board.set(previousPosition, Square.empty);
+    board.set(previousPosition, board.getEmpty(previousPosition));
   }
 
   Player get player {

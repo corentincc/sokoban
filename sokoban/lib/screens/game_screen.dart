@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sokoban/models/directions.dart';
 import 'package:sokoban/screens/menu_screen.dart';
 
-import '../models/game.dart';
+import 'package:sokoban/models/game.dart';
 
 class GameScreen extends StatefulWidget {
   final Game game;
