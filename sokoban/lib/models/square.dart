@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sokoban/widgets/image_container.dart';
 
 class Square {
+  static bool isInit = false;
   static final List<Square> _list = [];
 
   static final Square wall = Square("#", const ImageContainer(imagePath: "assets/sprites/wall.png"));
@@ -23,12 +24,14 @@ class Square {
     Square.box;
     Square.destination;
     Square.empty;
+
+    Square.isInit = true;
   }
 
   bool isEmpty() => this == empty;
 
   static Square get(String symbol) {
-    Square.init();
+    if (!isInit) Square.init();
     for (Square square in _list) {
       if (symbol == square.symbol) {
         return square;

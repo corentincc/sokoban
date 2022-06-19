@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sokoban/models/coordinates.dart';
 import 'package:sokoban/models/square.dart';
 
 class Board {
@@ -6,11 +7,21 @@ class Board {
 
   Board.fromTemplate(String template) : _board = _parseTemplate(template);
 
-  Square get(int x, int y) => _board[x][y];
+  int get width => _board.length;
 
-  void set(int x, int y, Square square) {
-    _board[x][y] = square;
+  int height(int index) => _board[index].length;
+
+  Square get(Coordinates coordinates) => _board[coordinates.x][coordinates.y];
+
+  void set(Coordinates coordinates, Square square) {
+    _board[coordinates.x][coordinates.y] = square;
   }
+
+  bool exist(Coordinates coordinates) =>
+      coordinates.x >= 0 &&
+      coordinates.y >= 0 &&
+      coordinates.x < width &&
+      coordinates.y < height(coordinates.x);
 
   List<Square> get toList {
     List<Square> list = [];
