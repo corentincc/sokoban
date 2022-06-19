@@ -16,7 +16,7 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   void initState() {
     super.initState();
-    _games = ApiService.fetchAlbum();
+    _games = ApiService.fetchGames();
   }
 
   @override

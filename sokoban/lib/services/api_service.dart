@@ -6,7 +6,7 @@ import 'package:sokoban/models/game.dart';
 
 class ApiService {
 
-  static Future<List<Game>> fetchAlbum() async {
+  static Future<List<Game>> fetchGames() async {
     final response = await http.get(Uri.parse(dotenv.env['API_ENDPOINT'].toString()));
 
     if (response.statusCode == 200) {
