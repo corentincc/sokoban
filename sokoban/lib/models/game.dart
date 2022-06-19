@@ -26,6 +26,8 @@ class Game {
   }
 
   void move(Movable movable, Directions direction) {
+    moveBoxIfBox(movable, direction);
+    
     if (!canMove(movable, direction)) {
       return;
     }
@@ -34,6 +36,19 @@ class Game {
     movable.move(direction);
     board.set(movable, movable.square);
     board.set(previousPosition, board.getEmpty(previousPosition));
+  }
+
+  void moveBoxIfBox(Movable movable, Directions direction) {
+    Coordinates newPosition = movable.get(direction);
+
+    if (board.get(newPosition) == Square.box) {
+      Box box = Box(newPosition.x, newPosition.y);
+      if (canMove(box, direction)) {
+        board.set(box, board.getEmpty(box));
+        box.move(direction);
+        board.set(box, box.square);
+      }
+    }
   }
 
   Player get player {

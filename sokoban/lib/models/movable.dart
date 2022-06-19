@@ -18,3 +18,7 @@ abstract class Movable extends Coordinates {
 class Player extends Movable {
   Player(int x, int y) : super(x, y, Square.player);
 }
+
+class Box extends Movable {
+  Box(int x, int y) : super(x, y, Square.box);
+}
