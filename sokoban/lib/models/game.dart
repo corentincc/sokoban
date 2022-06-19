@@ -33,7 +33,7 @@ class Game {
     movable.move(direction);
   }
 
-  Player findPlayer() {
+  Player get player {
     for (int x = 0; x < board.width; x++) {
       for (int y = 0; y < board.height(x); y++) {
         Square square = board.get(Coordinates(x, y));
