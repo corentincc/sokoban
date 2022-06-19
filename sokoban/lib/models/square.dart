@@ -4,6 +4,7 @@ import 'package:sokoban/widgets/image_container.dart';
 class Square {
   static bool isInit = false;
   static final List<Square> _list = [];
+  static const String _baseSymbols = "#X.";
 
   static final Square wall = Square("#", const ImageContainer(imagePath: "assets/sprites/wall.png"));
   static final Square player = Square("P", const ImageContainer(imagePath: "assets/sprites/player.png"));
@@ -35,6 +36,19 @@ class Square {
     for (Square square in _list) {
       if (symbol == square.symbol) {
         return square;
+      }
+    }
+    throw SquareNotFound("'$symbol' isn't a valid symbol.");
+  }
+
+  static Square getEmpty(String symbol) {
+    if (!isInit) Square.init();
+    for (Square square in _list) {
+      if (_baseSymbols.contains(symbol)) {
+        return square;
+      }
+      else {
+        return Square.empty;
       }
     }
     throw SquareNotFound("'$symbol' isn't a valid symbol.");

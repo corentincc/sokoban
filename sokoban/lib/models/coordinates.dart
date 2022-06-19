@@ -9,13 +9,13 @@ class Coordinates {
   Coordinates get(Directions direction) {
     switch(direction) {
       case Directions.north:
-        return Coordinates(x, y--);
+        return Coordinates(x, y-1);
       case Directions.south:
-        return Coordinates(x, y++);
+        return Coordinates(x, y+1);
       case Directions.east:
-        return Coordinates(x++, y);
+        return Coordinates(x+1, y);
       case Directions.west:
-        return Coordinates(x--, y);
+        return Coordinates(x-1, y);
     }
   }
 }

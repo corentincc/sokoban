@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sokoban/models/directions.dart';
 import 'package:sokoban/screens/menu_screen.dart';
 
 import '../models/game.dart';
@@ -28,7 +29,10 @@ class _GameScreenState extends State<GameScreen> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      game.move(game.player, Directions.north);
+                      setState(() { game = game; });
+                    },
                     icon: const Icon(Icons.keyboard_arrow_up),
                   ),
                 ),
@@ -38,7 +42,10 @@ class _GameScreenState extends State<GameScreen> {
                     Padding(
                       padding: const EdgeInsets.only(right: 16),
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          game.move(game.player, Directions.west);
+                          setState(() { game = game; });
+                        },
                         icon: const Icon(Icons.keyboard_arrow_left),
                       ),
                     ),
@@ -61,7 +68,10 @@ class _GameScreenState extends State<GameScreen> {
                     Padding(
                       padding: const EdgeInsets.only(left: 16),
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          game.move(game.player, Directions.east);
+                          setState(() { game = game; });
+                        },
                         icon: const Icon(Icons.keyboard_arrow_right),
                       ),
                     ),
@@ -70,7 +80,10 @@ class _GameScreenState extends State<GameScreen> {
                 Padding(
                   padding: const EdgeInsets.only(top: 16),
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      game.move(game.player, Directions.south);
+                      setState(() { game = game; });
+                    },
                     icon: const Icon(Icons.keyboard_arrow_down),
                   ),
                 ),

@@ -22,7 +22,7 @@ class Game {
     }
 
     Square square = board.get(newPosition);
-    return square == Square.empty;
+    return square == Square.empty || square == Square.destination;
   }
 
   void move(Movable movable, Directions direction) {
