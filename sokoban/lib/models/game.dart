@@ -41,12 +41,17 @@ class Game {
   void moveBoxIfBox(Movable movable, Directions direction) {
     Coordinates newPosition = movable.get(direction);
 
-    if (board.get(newPosition) == Square.box) {
+    if (board.get(newPosition) == Square.box || board.get(newPosition) == Square.goodBox) {
       Box box = Box(newPosition.x, newPosition.y);
       if (canMove(box, direction)) {
         board.set(box, board.getEmpty(box));
         box.move(direction);
-        board.set(box, box.square);
+        if(board.getEmpty(box) == Square.destination) {
+          board.set(box, Square.goodBox);
+        }
+        else {
+          board.set(box, box.square);
+        }
       }
     }
   }

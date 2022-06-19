@@ -9,6 +9,7 @@ class Square {
   static final Square wall = Square("#", const ImageContainer(imagePath: "assets/sprites/wall.png"));
   static final Square player = Square("P", const ImageContainer(imagePath: "assets/sprites/player.png"));
   static final Square box = Square("C", const ImageContainer(imagePath: "assets/sprites/box.png"));
+  static final Square goodBox = Square("G", const ImageContainer(imagePath: "assets/sprites/good_box.png"));
   static final Square destination = Square("X", const ImageContainer(imagePath: "assets/sprites/destination.png"));
   static final Square empty = Square(".", const ImageContainer(imagePath: "assets/sprites/floor.png"));
 
