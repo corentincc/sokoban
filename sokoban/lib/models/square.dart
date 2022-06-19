@@ -41,6 +41,6 @@ class Square {
 
 class SquareNotFound implements Exception {
   final String cause;
-  
+
   SquareNotFound(this.cause);
 }

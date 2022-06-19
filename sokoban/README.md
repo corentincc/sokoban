@@ -1,4 +1,0 @@
-# sokoban
-
-Sokoban game
-
