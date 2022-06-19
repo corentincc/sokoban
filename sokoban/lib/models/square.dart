@@ -18,9 +18,18 @@ class Square {
     _list.add(this);
   }
 
+  static void init() {
+    Square.wall;
+    Square.player;
+    Square.box;
+    Square.destination;
+    Square.empty;
+  }
+
   bool isEmpty() => this == empty;
 
   static Square get(String symbol) {
+    Square.init();
     for (Square square in _list) {
       if (symbol == square.symbol) {
         return square;
