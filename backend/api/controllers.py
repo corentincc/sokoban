@@ -1,7 +1,7 @@
 from typing import Any
 
 from blacksheep import FromJSON, Response, bad_request, created, not_found, ok
-from blacksheep.server.controllers import ApiController, get, put
+from blacksheep.server.controllers import ApiController, delete, get, put
 from django.core.exceptions import ObjectDoesNotExist
 
 from core.models import Level
@@ -58,4 +58,14 @@ class SokobanController(ApiController):
             setattr(level, key, value)
 
         level.save()
+        return ok()
+
+    @delete("/level/delete/:level_id")
+    def delete_level(self, level_id: int):
+        try:
+            level = Level.objects.get(pk=level_id)
+        except ObjectDoesNotExist:
+            return not_found()
+
+        level.delete()
         return ok()
