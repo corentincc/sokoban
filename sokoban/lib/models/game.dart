@@ -7,11 +7,13 @@ import 'coordinates.dart';
 
 class Game {
   final String _template;
-  final Board board;
+  Board board;
 
   Game(this._template) : board = Board.fromTemplate(_template);
 
-  Game get recreate => Game(_template);
+  void recreate() {
+    board = Board.fromTemplate(_template);
+  }
 
   factory Game.fromJson(Map<String, dynamic> json) {
     return Game(json['map']);

@@ -92,7 +92,8 @@ class _GameScreenState extends State<GameScreen> {
                 ),
                 ElevatedButton.icon(
                   onPressed: () {
-                    setState(() { game = game.recreate; });
+                    game.recreate();
+                    setState(() { game = game; });
                   },
                   style: TextButton.styleFrom(
                     primary: Colors.white,
