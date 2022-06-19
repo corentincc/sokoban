@@ -6,9 +6,12 @@ import 'package:sokoban/models/movable.dart';
 import 'coordinates.dart';
 
 class Game {
+  final String _template;
   final Board board;
 
-  Game(String template) : board = Board.fromTemplate(template);
+  Game(this._template) : board = Board.fromTemplate(_template);
+
+  Game get recreate => Game(_template);
 
   factory Game.fromJson(Map<String, dynamic> json) {
     return Game(json['map']);
