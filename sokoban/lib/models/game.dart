@@ -28,6 +28,10 @@ class Game {
     return square == Square.empty || square == Square.destination;
   }
 
+  bool isWin() {
+    return board.toList.contains(Square.goodBox) && !board.toList.contains(Square.box);
+  }
+
   void move(Movable movable, Directions direction) {
     moveBoxIfBox(movable, direction);
     

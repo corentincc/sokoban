@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sokoban/models/directions.dart';
 import 'package:sokoban/screens/menu_screen.dart';
 import 'package:sokoban/models/game.dart';
+import 'package:sokoban/screens/win_screen.dart';
 
 class GameScreen extends StatefulWidget {
   final Game game;
@@ -20,7 +21,7 @@ class _GameScreenState extends State<GameScreen> {
     List<Game>? games = widget.games;
 
     return Scaffold(
-      body: Column(
+      body: !game.isWin() ? Column(
         children: [
           Expanded(flex: 2, child: game.board.grid),
           Expanded(
@@ -91,12 +92,7 @@ class _GameScreenState extends State<GameScreen> {
                 ),
                 ElevatedButton.icon(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => GameScreen(game: game, games: games),
-                      ),
-                    );
+                    setState(() { game = game.recreate; });
                   },
                   style: TextButton.styleFrom(
                     primary: Colors.white,
@@ -110,7 +106,7 @@ class _GameScreenState extends State<GameScreen> {
             ),
           ),
         ],
-      ),
+      ) : WinScreen(actualGame: game, games: games)
     );
   }
 }
