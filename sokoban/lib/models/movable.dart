@@ -1,9 +1,12 @@
 import 'package:sokoban/models/directions.dart';
+import 'package:sokoban/models/square.dart';
 
 import 'coordinates.dart';
 
 abstract class Movable extends Coordinates {
-  Movable(super.x, super.y);
+  final Square square;
+
+  Movable(super.x, super.y, this.square);
 
   void move(Directions direction) {
     Coordinates newPosition = get(direction);
@@ -13,5 +16,5 @@ abstract class Movable extends Coordinates {
 }
 
 class Player extends Movable {
-  Player(super.x, super.y);
+  Player(int x, int y) : super(x, y, Square.player);
 }

@@ -30,7 +30,10 @@ class Game {
       return;
     }
 
+    Coordinates previousPosition = Coordinates(movable.x, movable.y);
     movable.move(direction);
+    board.set(movable, movable.square);
+    board.set(previousPosition, Square.empty);
   }
 
   Player get player {
