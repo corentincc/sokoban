@@ -26,7 +26,7 @@ class _MenuScreenState extends State<MenuScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Welcome to sokoban !"),
+            const Text("Welcome to sokoban !"),
             TextButton(
               onPressed: () {
                 Navigator.push(
@@ -49,12 +49,12 @@ class _MenuScreenState extends State<MenuScreen> {
                   ),
                 );
               },
-              child: Text("Play"),
               style: TextButton.styleFrom(
                 primary: Colors.white,
                 backgroundColor: Colors.teal,
                 onSurface: Colors.grey,
               ),
+              child: const Text("Play"),
             ),
           ],
         ),

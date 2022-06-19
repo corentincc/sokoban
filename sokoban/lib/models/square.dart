@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:sokoban/widgets/map/blank.dart';
-import 'package:sokoban/widgets/map/box.dart';
-import 'package:sokoban/widgets/map/destination.dart';
-import 'package:sokoban/widgets/map/player.dart';
-import 'package:sokoban/widgets/map/wall.dart';
+import 'package:sokoban/widgets/image_container.dart';
 
 class Square {
   static final List<Square> _list = [];
 
-  static final Square wall = Square("#", const Wall());
-  static final Square player = Square("P", const Player());
-  static final Square box = Square("C", const Box());
-  static final Square destination = Square("X", const Destination());
-  static final Square empty = Square(".", const Blank());
+  static final Square wall = Square("#", const ImageContainer(imagePath: "assets/sprites/wall.png"));
+  static final Square player = Square("P", const ImageContainer(imagePath: "assets/sprites/player.png"));
+  static final Square box = Square("C", const ImageContainer(imagePath: "assets/sprites/box.png"));
+  static final Square destination = Square("X", const ImageContainer(imagePath: "assets/sprites/destination.png"));
+  static final Square empty = Square(".", const ImageContainer(imagePath: "assets/sprites/floor.png"));
 
   final String symbol;
   final Widget widget;
