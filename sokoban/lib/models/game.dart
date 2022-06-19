@@ -38,7 +38,7 @@ class Game {
 
   Player get player {
     for (int x = 0; x < board.width; x++) {
-      for (int y = 0; y < board.height(x); y++) {
+      for (int y = 0; y < board.height; y++) {
         Square square = board.get(Coordinates(x, y));
         if (square == Square.player) {
           return Player(x, y);

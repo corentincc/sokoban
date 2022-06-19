@@ -9,7 +9,7 @@ class Board {
 
   int get width => _board.length;
 
-  int height(int index) => _board[index].length;
+  int get height => _board[0].length;
 
   Square get(Coordinates coordinates) => _board[coordinates.x][coordinates.y];
 
@@ -21,14 +21,15 @@ class Board {
       coordinates.x >= 0 &&
       coordinates.y >= 0 &&
       coordinates.x < width &&
-      coordinates.y < height(coordinates.x);
+      coordinates.y < height;
 
   List<Square> get toList {
     List<Square> list = [];
 
-    for (List<Square> column in _board) {
-      for (Square square in column) {
-        list.add(square);
+    for (int x = 0; x < height; x++) {
+      for (int y = 0; y < width; y ++) {
+        Coordinates coordinates = Coordinates(x, y);
+        list.add(get(coordinates));
       }
     }
 
@@ -41,7 +42,7 @@ class Board {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: boardList.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: _board.length,
+        crossAxisCount: height,
       ),
       itemBuilder: (BuildContext context, int index) {
         return boardList[index].widget;
