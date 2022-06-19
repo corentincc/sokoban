@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sokoban/models/game_map.dart';
+
+import '../models/game.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({Key? key}) : super(key: key);
@@ -9,7 +10,7 @@ class GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<GameScreen> {
-  GameMap gameMap = GameMap("######\n#..P.#\n#C####\n#.####\n#X####\n######");
+  Game game = Game("######\n#..P.#\n#C####\n#.####\n#X####\n######");
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +19,7 @@ class _GameScreenState extends State<GameScreen> {
         children: [
           Expanded(
             flex: 2,
-            child: GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: gameMap.squaresNumber,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: gameMap.rowNumber,
-              ),
-              itemBuilder: (BuildContext context, int index) {
-                return gameMap.getWidget(index);
-              },
-            ),
+            child: game.board.grid
           ),
           Expanded(
             flex: 1,
