@@ -27,7 +27,7 @@ class _MenuScreenState extends State<MenuScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text("Welcome to sokoban !"),
-            TextButton(
+            ElevatedButton.icon(
               onPressed: () {
                 Navigator.push(
                   context,
@@ -36,7 +36,7 @@ class _MenuScreenState extends State<MenuScreen> {
                       future: _games,
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
-                          return GameScreen(game: snapshot.data!.first);
+                          return GameScreen(game: snapshot.data!.first, games: snapshot.data!);
                         }
                         if (snapshot.hasError) {
                           return Text('${snapshot.error}');
@@ -54,7 +54,8 @@ class _MenuScreenState extends State<MenuScreen> {
                 backgroundColor: Colors.teal,
                 onSurface: Colors.grey,
               ),
-              child: const Text("Play"),
+              icon: const Icon(Icons.play_arrow),
+              label: const Text("Play"),
             ),
           ],
         ),

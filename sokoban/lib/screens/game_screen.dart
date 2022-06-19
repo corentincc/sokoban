@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sokoban/models/directions.dart';
 import 'package:sokoban/screens/menu_screen.dart';
-
 import 'package:sokoban/models/game.dart';
 
 class GameScreen extends StatefulWidget {
   final Game game;
+  final List<Game>? games;
 
-  const GameScreen({Key? key, required this.game}) : super(key: key);
+  const GameScreen({Key? key, required this.game, required this.games}) : super(key: key);
 
   @override
   State<GameScreen> createState() => _GameScreenState();
@@ -17,6 +17,7 @@ class _GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
     Game game = widget.game;
+    List<Game>? games = widget.games;
 
     return Scaffold(
       body: Column(
@@ -49,7 +50,7 @@ class _GameScreenState extends State<GameScreen> {
                         icon: const Icon(Icons.keyboard_arrow_left),
                       ),
                     ),
-                    TextButton(
+                    ElevatedButton.icon(
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -63,7 +64,8 @@ class _GameScreenState extends State<GameScreen> {
                         backgroundColor: Colors.teal,
                         onSurface: Colors.grey,
                       ),
-                      child: const Text("Go home"),
+                      icon: const Icon(Icons.home),
+                      label: const Text("Go home"),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 16),
@@ -86,6 +88,23 @@ class _GameScreenState extends State<GameScreen> {
                     },
                     icon: const Icon(Icons.keyboard_arrow_down),
                   ),
+                ),
+                ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => GameScreen(game: game, games: games),
+                      ),
+                    );
+                  },
+                  style: TextButton.styleFrom(
+                    primary: Colors.white,
+                    backgroundColor: Colors.teal,
+                    onSurface: Colors.grey,
+                  ),
+                  icon: const Icon(Icons.replay),
+                  label: const Text("Play again"),
                 ),
               ],
             ),
