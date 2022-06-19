@@ -10,9 +10,9 @@ runs:
         architecture: "x64"
 
     - name: Install Pipenv & Dependancies
-      working-directory: ./backend
+      working-directory: ${{env.BACKEND_DIR}}
       shell: bash
       run: |
         pip install --upgrade pip
-        pip install --upgrade pipenv
+        pip install pipenv
         pipenv install --dev --deploy --system

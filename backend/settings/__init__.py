@@ -1,8 +1,9 @@
 import os
 
+from colorama import Fore
 from dotenv import load_dotenv
 
-from services.utils import trace
+from services import logs
 
 
 load_dotenv()
@@ -19,4 +20,6 @@ match EXEC_PROFILE.lower():
     case _:
         raise RuntimeError("No suitable configuration found.")
 
-trace.info(f'Profile set from "{EXEC_PROFILE.title()} Settings"')
+logs.log(
+    f'Profile set from "{EXEC_PROFILE.title()} Settings"', "settings", color=Fore.CYAN
+)

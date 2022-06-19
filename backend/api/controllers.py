@@ -1,7 +1,11 @@
-from blacksheep import pretty_json, not_found, Response
-from blacksheep.server.controllers import ApiController, get
+from typing import Any
 
-from core.schemas import Level
+from blacksheep import FromJSON, Response, bad_request, created, not_found, ok
+from blacksheep.server.controllers import ApiController, get, put
+from django.core.exceptions import ObjectDoesNotExist
+
+from core.models import Level
+from .serializers import LevelSerializer
 
 
 class SokobanController(ApiController):
@@ -13,9 +17,45 @@ class SokobanController(ApiController):
     def route(cls) -> str:
         return "api"
 
+    @get("/levels")
+    def levels(self):
+        levels = Level.objects.all()
+        return [LevelSerializer.from_model(level) for level in levels]
+
     @get("/level/:level_id")
-    async def level(self, level_id: int) -> Response:
-        if level := await Level.get(level_id):
-            return pretty_json({"map": level.map})
-        else:
+    def level(self, level_id: int):
+        try:
+            level = Level.objects.get(pk=level_id)
+            return LevelSerializer.from_model(level)
+        except ObjectDoesNotExist:
             return not_found()
+
+    @put("/level/create")
+    def create_level(self, data: FromJSON) -> Response:
+        values: dict[str, Any] = data.value
+
+        try:
+            level = Level.objects.create(**values)
+            level.save()
+        except TypeError as exc:
+            return bad_request(str(exc))
+
+        return created()
+
+    @put("/level/edit/:level_id")
+    def edit_level(self, level_id: int, data: FromJSON) -> Response:
+        try:
+            level = Level.objects.get(pk=level_id)
+        except ObjectDoesNotExist:
+            return not_found()
+
+        values: dict[str, Any] = data.value
+
+        for key, value in values.items():
+            if not hasattr(level, key):
+                return bad_request(f"Level doesn't have attribute '{key}'.")
+
+            setattr(level, key, value)
+
+        level.save()
+        return ok()

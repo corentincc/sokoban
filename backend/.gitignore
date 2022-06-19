@@ -307,3 +307,6 @@ settings/local.py
 # Keys
 .api-key
 .secret-key
+
+# Logs
+logs/*.txt
